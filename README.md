@@ -1,6 +1,4 @@
-# Postgres Wasm FDW [Template]
-
-This project demostrates how to create a Postgres Foreign Data Wrapper with Wasm, using the [Wrappers framework](https://github.com/supabase/wrappers).
+# GitHub Wasm FDW
 
 This example reads the [realtime GitHub events](https://api.github.com/events) into a Postgres database. 
 
@@ -27,7 +25,3 @@ A [Wasm Interface Type](https://github.com/bytecodealliance/wit-bindgen) (WIT) d
 ## Getting started
 
 To get started, visit the [Wasm FDW developing guide](https://fdw.dev/guides/create-wasm-wrapper/).
-
-## License
-
-[Apache License Version 2.0](./LICENSE)
