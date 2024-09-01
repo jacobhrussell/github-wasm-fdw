@@ -29,40 +29,39 @@ To get started, visit the [Wasm FDW developing guide](https://fdw.dev/guides/cre
 ## Usage
 
 To use this Wasm foreign data wrapper on Supabase, create a foreign table like below,
-
 ```sql
-create extension if not exists wrappers with schema extensions;
-
-create foreign data wrapper wasm_wrapper
-handler wasm_fdw_handler
-validator wasm_fdw_validator;
-
-create server example_server
-foreign data wrapper wasm_wrapper
-options (
-    fdw_package_url 'https://github.com/${GITHUB_REPOSITORY}/releases/download/v${VERSION}/${PROJECT}.wasm',
-    fdw_package_name '${PACKAGE}',
-    fdw_package_version '${VERSION}',
-    fdw_package_checksum '${CHECKSUM}',
-    api_url 'https://api.github.com'
-);
-
-create schema github;
-
-create foreign table github.events (
-id text,
-type text,
-actor jsonb,
-repo jsonb,
-payload jsonb,
-public boolean,
-created_at timestamp
-)
-server example_server
-options (
-    object 'events',
-    rowid_column 'id'
-);
+  create extension if not exists wrappers with schema extensions;
+  
+  create foreign data wrapper wasm_wrapper
+    handler wasm_fdw_handler
+    validator wasm_fdw_validator;
+  
+  create server example_server
+    foreign data wrapper wasm_wrapper
+    options (
+      fdw_package_url 'https://github.com/${GITHUB_REPOSITORY}/releases/download/v${VERSION}/${PROJECT}.wasm',
+      fdw_package_name '${PACKAGE}',
+      fdw_package_version '${VERSION}',
+      fdw_package_checksum '${CHECKSUM}',
+      api_url 'https://api.github.com'
+    );
+  
+  create schema github;
+  
+  create foreign table github.events (
+    id text,
+    type text,
+    actor jsonb,
+    repo jsonb,
+    payload jsonb,
+    public boolean,
+    created_at timestamp
+  )
+    server example_server
+    options (
+      object 'events',
+      rowid_column 'id'
+    );
 ```
 
-For more details, please visit https://fdw.dev.
+  For more details, please visit https://fdw.dev.
